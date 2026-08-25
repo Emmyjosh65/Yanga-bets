@@ -1,23 +1,21 @@
 /* ============================================================
    YANGA BET — main.js
-   Complete application logic with Firebase integration
    ============================================================ */
 
-// ===== 1. FIREBASE CONFIGURATION =====
+// ===== ✅ CORRECTED FIREBASE CONFIG (from your actual project) =====
 const firebaseConfig = {
-  apiKey: "AIzaSyB15_69jbnlV0wzf4-VK8DQzadBUPTlqQ",
+  apiKey: "AIzaSyB15_69jbnl1VBwZf4-VK80QzadBUPTLqQ",
   authDomain: "yanga-bets.firebaseapp.com",
   projectId: "yanga-bets",
-  storageBucket: "yanga-bets.firebasestorage.app",
+  storageBucket: "yanga-bets.appspot.com",
   messagingSenderId: "421888552219",
-  appId: "1:421888552219:web:bf138c490d7dbf5fb77be",
-  measurementId: "G-33J1N3WXC6"
+  appId: "1:421888552219:web:bfc138c49d07dbf5bf77be",
+  measurementId: "G-33JN3WXCA"
 };
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-
 // ===== 2. STATE =====
 let currentUser = null;
 let currentUserData = null;
