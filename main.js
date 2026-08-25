@@ -2,12 +2,12 @@
    YANGA BET — main.js
    ============================================================ */
 
-// ===== ✅ CORRECTED FIREBASE CONFIG (from your actual project) =====
+// ===== ✅ CORRECTED FIREBASE CONFIG from your Firebase Console =====
 const firebaseConfig = {
-  apiKey: "AIzaSyB15_69jbnl1VBwZf4-VK80QzadBUPTLqQ",
+  apiKey: "AIzaSyB15_69jbnl1VBwZf4-VK80QzaW8D02a",
   authDomain: "yanga-bets.firebaseapp.com",
   projectId: "yanga-bets",
-  storageBucket: "yanga-bets.appspot.com",
+  storageBucket: "yanga-bets.firebaseapp.com",
   messagingSenderId: "421888552219",
   appId: "1:421888552219:web:bfc138c49d07dbf5bf77be",
   measurementId: "G-33JN3WXCA"
