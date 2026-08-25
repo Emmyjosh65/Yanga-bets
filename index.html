@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a0e0a" />
+  <title>YANGA BET — Football Predictions & Sportsbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- ===== LOADING OVERLAY ===== -->
+    <div id="loadingOverlay" class="loading-overlay" style="display:none;">
+      <div class="spinner"></div>
+      <p id="loadingText">Loading...</p>
+    </div>
+
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- ===== LANDING PAGE ===== -->
+    <section id="viewLanding" class="view landing-view">
+      <div class="landing-hero">
+        <div class="hero-badge">PREMIUM SPORTSBOOK</div>
+        <h1 class="hero-title">YANGA <span class="text-gold">BET</span></h1>
+        <p class="hero-subtitle">Your modern football prediction and sportsbook experience.</p>
+        <p class="hero-desc">Explore football fixtures, betting markets, match statistics, simulated betting slips and daily Yanga signals from one simple platform.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="showView('signup')">CREATE ACCOUNT</button>
+          <button class="btn btn-outline" onclick="showView('login')">LOGIN</button>
+          <button class="btn btn-ghost" onclick="showView('sports')">VIEW SPORTS</button>
+        </div>
+      </div>
+
+      <div class="landing-features">
+        <div class="feature-card">
+          <div class="feature-icon">⚽</div>
+          <h3>Live Fixtures</h3>
+          <p>Real-time match cards & odds</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Daily Signals</h3>
+          <p>Expert match analysis</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Secure Wallet</h3>
+          <p>Demo balance & tracking</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>Top Leagues</h3>
+          <p>EPL, UCL, La Liga & more</p>
+        </div>
+      </div>
+
+      <div class="landing-signals-preview">
+        <h2>🔥 Daily Yanga Signals</h2>
+        <p>Get expert football predictions delivered daily. Join thousands of members.</p>
+        <button class="btn btn-primary" onclick="window.open('https://whatsapp.com/channel/0029VbCoI29AYlUOb6Bdpo30','_blank')">
+          JOIN YANGA BET SIGNAL CHANNEL
+        </button>
+      </div>
+
+      <div class="landing-disclaimer">
+        <p>⚠ Bet responsibly. Match predictions and signals are not guaranteed to win. This demo does not process real-money wagers.</p>
+      </div>
+
+      <footer class="landing-footer">
+        <p><strong>YANGA BET</strong> · Sports · Predictions · Football</p>
+        <p>Email: yangabet100@gmail.com</p>
+        <p>Join our <a href="https://whatsapp.com/channel/0029VbCoI29AYlUOb6Bdpo30" target="_blank">WhatsApp channel</a></p>
+        <p class="footer-small">&copy; 2026 YANGA BET. All rights reserved.</p>
+      </footer>
+    </section>
+
+    <!-- ===== LOGIN VIEW ===== -->
+    <section id="viewLogin" class="view auth-view" style="display:none;">
+      <div class="auth-container">
+        <div class="auth-header">
+          <h1 class="auth-brand">YANGA <span class="text-gold">BET</span></h1>
+          <p class="auth-sub">Welcome Back</p>
+        </div>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" class="form-input" placeholder="Enter your username" required autocomplete="username" />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password" required autocomplete="current-password" />
+          </div>
+          <div class="form-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="rememberUsername" checked />
+              <span>Remember username</span>
+            </label>
+            <button type="button" class="btn-link" onclick="showForgotPassword()">Forgot password?</button>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="loginBtn">LOGIN</button>
+        </form>
+        <p class="auth-switch">Don't have an account? <button class="btn-link" onclick="showView('signup')">CREATE ACCOUNT</button></p>
+        <button class="btn btn-ghost btn-block" onclick="showView('landing')">← Back to home</button>
+      </div>
+    </section>
+
+    <!-- ===== SIGNUP VIEW ===== -->
+    <section id="viewSignup" class="view auth-view" style="display:none;">
+      <div class="auth-container">
+        <div class="auth-header">
+          <h1 class="auth-brand">YANGA <span class="text-gold">BET</span></h1>
+          <p class="auth-sub">Create Your Account</p>
+        </div>
+        <form id="signupForm" onsubmit="handleSignup(event)">
+          <div class="form-group">
+            <label for="signupUsername">Username</label>
+            <input type="text" id="signupUsername" class="form-input" placeholder="Choose a username" required autocomplete="off" minlength="3" />
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" class="form-input" placeholder="Min 6 characters" required autocomplete="new-password" minlength="6" />
+          </div>
+          <div class="form-group">
+            <label for="signupConfirm">Confirm Password</label>
+            <input type="password" id="signupConfirm" class="form-input" placeholder="Confirm your password" required autocomplete="new-password" />
+          </div>
+          <div class="form-group">
+            <label for="signupPhone">Phone Number</label>
+            <input type="tel" id="signupPhone" class="form-input" placeholder="e.g. 08012345678" required autocomplete="tel" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="signupBtn">CREATE ACCOUNT</button>
+        </form>
+        <p class="auth-switch">Already have an account? <button class="btn-link" onclick="showView('login')">LOGIN</button></p>
+        <button class="btn btn-ghost btn-block" onclick="showView('landing')">← Back to home</button>
+      </div>
+    </section>
+
+    <!-- ===== FORGOT PASSWORD VIEW ===== -->
+    <section id="viewForgotPassword" class="view auth-view" style="display:none;">
+      <div class="auth-container">
+        <div class="auth-header">
+          <h1 class="auth-brand">YANGA <span class="text-gold">BET</span></h1>
+          <p class="auth-sub">Reset Password</p>
+        </div>
+        <form id="forgotForm" onsubmit="handleForgotPassword(event)">
+          <div class="form-group">
+            <label for="forgotUsername">Username</label>
+            <input type="text" id="forgotUsername" class="form-input" placeholder="Enter your username" required />
+          </div>
+          <p class="form-help">A password reset email will be sent to the email associated with your account.</p>
+          <button type="submit" class="btn btn-primary btn-block" id="forgotBtn">SEND RESET EMAIL</button>
+        </form>
+        <p class="auth-switch"><button class="btn-link" onclick="showView('login')">← Back to login</button></p>
+      </div>
+    </section>
+
+    <!-- ===== MAIN APP (Logged in) ===== -->
+    <div id="appMain" style="display:none;">
+      <!-- Top Navigation -->
+      <nav id="topNav" class="top-nav">
+        <div class="nav-brand">YANGA <span class="text-gold">BET</span></div>
+        <div class="nav-links" id="navLinks">
+          <button class="nav-item active" onclick="navigateTo('home')" data-view="home">Home</button>
+          <button class="nav-item" onclick="navigateTo('sports')" data-view="sports">Sports</button>
+          <button class="nav-item" onclick="navigateTo('live')" data-view="live">Live</button>
+          <button class="nav-item" onclick="navigateTo('bets')" data-view="bets">Bets</button>
+          <button class="nav-item" onclick="navigateTo('signals')" data-view="signals">Signals</button>
+          <button class="nav-item" onclick="navigateTo('wallet')" data-view="wallet">Wallet</button>
+          <button class="nav-item" onclick="navigateTo('profile')" data-view="profile">Profile</button>
+          <button class="nav-item" id="adminNavItem" onclick="navigateTo('admin')" data-view="admin" style="display:none;">Admin</button>
+          <button class="nav-item nav-logout" onclick="handleLogout()">Logout</button>
+        </div>
+        <button class="menu-toggle" id="menuToggle" onclick="toggleMobileMenu()">☰</button>
+      </nav>
+
+      <!-- Mobile Bottom Navigation -->
+      <nav id="bottomNav" class="bottom-nav">
+        <button class="bottom-nav-item active" onclick="navigateTo('home')" data-view="home">
+          <span class="bnav-icon">🏠</span>
+          <span class="bnav-label">Home</span>
+        </button>
+        <button class="bottom-nav-item" onclick="navigateTo('sports')" data-view="sports">
+          <span class="bnav-icon">⚽</span>
+          <span class="bnav-label">Sports</span>
+        </button>
+        <button class="bottom-nav-item" onclick="navigateTo('bets')" data-view="bets">
+          <span class="bnav-icon">🎫</span>
+          <span class="bnav-label">Bets</span>
+        </button>
+        <button class="bottom-nav-item" onclick="navigateTo('signals')" data-view="signals">
+          <span class="bnav-icon">📡</span>
+          <span class="bnav-label">Signals</span>
+        </button>
+        <button class="bottom-nav-item" onclick="navigateTo('wallet')" data-view="wallet">
+          <span class="bnav-icon">💰</span>
+          <span class="bnav-label">Wallet</span>
+        </button>
+      </nav>
+
+      <!-- Content Area -->
+      <main id="mainContent" class="main-content">
+        <!-- HOME VIEW -->
+        <section id="viewHome" class="page-view">
+          <div class="home-greeting">
+            <h2>Welcome back, <span id="displayName">User</span>!</h2>
+            <p class="text-muted">Ready for today's matches?</p>
+          </div>
+
+          <!-- Wallet Preview -->
+          <div class="wallet-preview-row">
+            <div class="wallet-card wallet-card-main">
+              <span class="wallet-label">Balance</span>
+              <span class="wallet-amount" id="homeBalance">₦0</span>
+            </div>
+            <div class="wallet-card wallet-card-bonus">
+              <span class="wallet-label">Bonus</span>
+              <span class="wallet-amount" id="homeBonus">₦0</span>
+            </div>
+          </div>
+
+          <!-- Stats Row -->
+          <div class="stats-row">
+            <div class="stat-card"><span class="stat-num" id="statOpen">0</span><span class="stat-label">Open</span></div>
+            <div class="stat-card"><span class="stat-num stat-won" id="statWon">0</span><span class="stat-label">Won</span></div>
+            <div class="stat-card"><span class="stat-num stat-lost" id="statLost">0</span><span class="stat-label">Lost</span></div>
+            <div class="stat-card"><span class="stat-num" id="statTotal">0</span><span class="stat-label">Total</span></div>
+          </div>
+
+          <!-- Featured Matches -->
+          <section class="home-section">
+            <h3>⚡ Featured Matches</h3>
+            <div id="featuredMatches" class="match-list">
+              <p class="text-muted">Loading matches...</p>
+            </div>
+          </section>
+
+          <!-- Yanga Signals Preview -->
+          <section class="home-section">
+            <h3>📡 Yanga Signals</h3>
+            <div id="homeSignals" class="signal-list">
+              <p class="text-muted">Loading signals...</p>
+            </div>
+          </section>
+
+          <!-- WhatsApp CTA -->
+          <section class="home-section cta-section">
+            <h3>📱 Join Our Signal Channel</h3>
+            <p>Get daily football predictions delivered directly to your WhatsApp.</p>
+            <button class="btn btn-primary btn-block" onclick="window.open('https://whatsapp.com/channel/0029VbCoI29AYlUOb6Bdpo30','_blank')">
+              JOIN YANGA BET SIGNAL CHANNEL
+            </button>
+          </section>
+
+          <!-- How It Works -->
+          <section class="home-section">
+            <h3>How It Works</h3>
+            <div class="how-steps">
+              <div class="step"><span class="step-num">1</span><p>Create account</p></div>
+              <div class="step"><span class="step-num">2</span><p>Browse matches</p></div>
+              <div class="step"><span class="step-num">3</span><p>Select odds</p></div>
+              <div class="step"><span class="step-num">4</span><p>Place bet</p></div>
+            </div>
+          </section>
+
+          <!-- Responsible Betting -->
+          <section class="home-section responsible-notice">
+            <p>⚠ Bet responsibly. This platform does not process real-money wagers. Match predictions are not guaranteed.</p>
+          </section>
+        </section>
+
+        <!-- SPORTS VIEW -->
+        <section id="viewSports" class="page-view" style="display:none;">
+          <h2>⚽ Football Matches</h2>
+          <div class="league-filters" id="leagueFilters">
+            <button class="league-btn active" data-league="all">All</button>
+            <button class="league-btn" data-league="Premier League">🏴 EPL</button>
+            <button class="league-btn" data-league="Champions League">⭐ UCL</button>
+            <button class="league-btn" data-league="La Liga">🇪🇸 La Liga</button>
+            <button class="league-btn" data-league="Serie A">🇮🇹 Serie A</button>
+            <button class="league-btn" data-league="Bundesliga">🇩🇪 Bundesliga</button>
+            <button class="league-btn" data-league="Ligue 1">🇫🇷 Ligue 1</button>
+          </div>
+          <div id="sportsMatchList" class="match-list">
+            <p class="text-muted">Loading matches...</p>
+          </div>
+        </section>
+
+        <!-- LIVE VIEW -->
+        <section id="viewLive" class="page-view" style="display:none;">
+          <h2>🔴 Live Matches</h2>
+          <div id="liveMatchList" class="match-list">
+            <p class="text-muted">No live matches at the moment.</p>
+          </div>
+        </section>
+
+        <!-- BETS VIEW -->
+        <section id="viewBets" class="page-view" style="display:none;">
+          <div class="bets-header">
+            <h2>📋 My Bets</h2>
+            <div class="bet-tabs">
+              <button class="bet-tab active" data-filter="all" onclick="filterBets('all')">All</button>
+              <button class="bet-tab" data-filter="pending" onclick="filterBets('pending')">Pending</button>
+              <button class="bet-tab" data-filter="won" onclick="filterBets('won')">Won</button>
+              <button class="bet-tab" data-filter="lost" onclick="filterBets('lost')">Lost</button>
+            </div>
+          </div>
+          <div id="betsList" class="bets-list">
+            <p class="text-muted">Loading your bets...</p>
+          </div>
+        </section>
+
+        <!-- SIGNALS VIEW -->
+        <section id="viewSignals" class="page-view" style="display:none;">
+          <div class="signals-header">
+            <h2>📡 YANGA SIGNALS</h2>
+            <p class="text-muted">Daily football predictions from our analysis team.</p>
+          </div>
+          <div id="signalsList" class="signal-list">
+            <p class="text-muted">Loading signals...</p>
+          </div>
+          <div class="signals-cta">
+            <button class="btn btn-primary btn-block" onclick="window.open('https://whatsapp.com/channel/0029VbCoI29AYlUOb6Bdpo30','_blank')">
+              JOIN WHATSAPP SIGNAL CHANNEL
+            </button>
+            <p class="text-muted small">⚠ No prediction is guaranteed.</p>
+          </div>
+        </section>
+
+        <!-- WALLET VIEW -->
+        <section id="viewWallet" class="page-view" style="display:none;">
+          <h2>💰 Wallet</h2>
+          <div class="wallet-balance-row">
+            <div class="wallet-card wallet-card-main">
+              <span class="wallet-label">Available Balance</span>
+              <span class="wallet-amount" id="walletBalance">₦0</span>
+            </div>
+            <div class="wallet-card wallet-card-bonus">
+              <span class="wallet-label">Bonus Balance</span>
+              <span class="wallet-amount" id="walletBonus">₦0</span>
+            </div>
+          </div>
+
+          <div class="wallet-actions">
+            <button class="btn btn-primary" onclick="showDepositModal()">Deposit</button>
+            <button class="btn btn-outline" onclick="showWithdrawModal()">Withdraw</button>
+          </div>
+
+          <h3>Transaction History</h3>
+          <div id="transactionList" class="transaction-list">
+            <p class="text-muted">Loading transactions...</p>
+          </div>
+        </section>
+
+        <!-- PROFILE VIEW -->
+        <section id="viewProfile" class="page-view" style="display:none;">
+          <h2>👤 Profile</h2>
+          <div class="profile-card">
+            <div class="profile-field">
+              <span class="field-label">Username</span>
+              <span class="field-value" id="profileUsername">-</span>
+            </div>
+            <div class="profile-field">
+              <span class="field-label">Phone</span>
+              <span class="field-value" id="profilePhone">-</span>
+            </div>
+            <div class="profile-field">
+              <span class="field-label">Member Since</span>
+              <span class="field-value" id="profileJoined">-</span>
+            </div>
+            <div class="profile-field">
+              <span class="field-label">Account Status</span>
+              <span class="field-value" id="profileStatus">-</span>
+            </div>
+          </div>
+          <button class="btn btn-danger btn-block" onclick="handleLogout()">LOGOUT</button>
+        </section>
+
+        <!-- ADMIN VIEW -->
+        <section id="viewAdmin" class="page-view" style="display:none;">
+          <h2>⚙️ Admin Dashboard</h2>
+          <div class="admin-tabs">
+            <button class="admin-tab active" onclick="switchAdminTab('users')">Users</button>
+            <button class="admin-tab" onclick="switchAdminTab('deposits')">Deposits</button>
+            <button class="admin-tab" onclick="switchAdminTab('withdrawals')">Withdrawals</button>
+            <button class="admin-tab" onclick="switchAdminTab('matches')">Matches</button>
+            <button class="admin-tab" onclick="switchAdminTab('signals')">Signals</button>
+          </div>
+
+          <div id="adminUsers" class="admin-panel">
+            <h3>👥 Users</h3>
+            <input type="text" id="adminUserSearch" class="form-input" placeholder="Search by name, email or username..." oninput="searchUsers()" />
+            <div id="usersList" class="admin-list"><p class="text-muted">Loading users...</p></div>
+          </div>
+
+          <div id="adminDeposits" class="admin-panel" style="display:none;">
+            <h3>💰 Deposit Requests</h3>
+            <div id="depositsList" class="admin-list"><p class="text-muted">Loading deposits...</p></div>
+          </div>
+
+          <div id="adminWithdrawals" class="admin-panel" style="display:none;">
+            <h3>💸 Withdrawal Requests</h3>
+            <div id="withdrawalsList" class="admin-list"><p class="text-muted">Loading withdrawals...</p></div>
+          </div>
+
+          <div id="adminMatches" class="admin-panel" style="display:none;">
+            <div class="admin-header-row">
+              <h3>⚽ Match Manager</h3>
+              <button class="btn btn-primary btn-sm" onclick="showAddMatchModal()">+ Add Match</button>
+            </div>
+            <div id="adminMatchesList" class="admin-list"><p class="text-muted">Loading matches...</p></div>
+          </div>
+
+          <div id="adminSignals" class="admin-panel" style="display:none;">
+            <div class="admin-header-row">
+              <h3>📡 Signal Manager</h3>
+              <button class="btn btn-primary btn-sm" onclick="showAddSignalModal()">+ Add Signal</button>
+            </div>
+            <div id="adminSignalsList" class="admin-list"><p class="text-muted">Loading signals...</p></div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ===== BETTING SLIP (Desktop sticky / Mobile bottom sheet) ===== -->
+      <div id="betSlipPanel" class="bet-slip-panel">
+        <div class="bet-slip-header">
+          <h3>BET SLIP <span id="slipCount" class="slip-count">0</span></h3>
+          <button class="btn-ghost-sm" onclick="clearSlip()">Clear</button>
+        </div>
+        <div id="slipSelections" class="slip-selections">
+          <p class="text-muted small">Select odds to add here.</p>
+        </div>
+        <div id="slipFooter" class="slip-footer" style="display:none;">
+          <div class="slip-stake-row">
+            <label>Stake (₦)</label>
+            <input type="number" id="slipStake" class="form-input" min="100" value="5000" oninput="updateSlip()" />
+          </div>
+          <div class="slip-total-row">
+            <span>Total Odds</span>
+            <span id="slipTotalOdds">1.00</span>
+          </div>
+          <div class="slip-total-row">
+            <span>Potential Return</span>
+            <span id="slipPotentialReturn">₦0</span>
+          </div>
+          <button class="btn btn-primary btn-block" id="placeBetBtn" onclick="confirmPlaceBet()">PLACE BET</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MODALS ===== -->
+    <div id="modalOverlay" class="modal-overlay" style="display:none;" onclick="closeModal()"></div>
+    <div id="modalContent" class="modal-content" style="display:none;">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
